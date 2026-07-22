@@ -15,14 +15,17 @@ export default function ProductDetailPage() {
     return <div className="glitch">[!] PRODUCTO NO ENCONTRADO</div>;
   }
 
-  const mainImg = displayImage || product.image_url;
+  // CASTEAMOS A 'any' PARA EVITAR ERRORES DE COMPILACIÓN CON TYPESCRIPT
+  const prod = product as any;
+
+  const mainImg = displayImage || prod.image_url;
   
-  // Mapeo flexible para nombres de propiedades
-  const basePrice = Number(product.price ?? product.precio ?? 0);
-  const discount = Number(product.discount_percentage ?? product.discountPercentage ?? product.descuento ?? 0);
+  // Mapeo flexible para nombres de propiedades sin error de TypeScript
+  const basePrice = Number(prod.price ?? prod.precio ?? 0);
+  const discount = Number(prod.discount_percentage ?? prod.discountPercentage ?? prod.descuento ?? 0);
   
   // Evaluamos si está en oferta
-  const rawOnSale = product.on_sale ?? product.onSale ?? product.en_oferta;
+  const rawOnSale = prod.on_sale ?? prod.onSale ?? prod.en_oferta;
   const isOnSale = (
     rawOnSale === true || 
     rawOnSale === 'true' || 
@@ -32,7 +35,7 @@ export default function ProductDetailPage() {
   ) && discount > 0;
 
   const finalPrice = isOnSale ? basePrice * (1 - discount / 100) : basePrice;
-  const stockCount = Number(product.stock) || 0;
+  const stockCount = Number(prod.stock) || 0;
 
   return (
     <div className="product-layout">
@@ -42,17 +45,17 @@ export default function ProductDetailPage() {
           {/* COLUMNA IZQUIERDA: IMÁGENES */}
           <div className="image-sector">
             <div className="main-image-container glass">
-              <img src={mainImg} alt={product.name} className="main-product-img" />
+              <img src={mainImg} alt={prod.name} className="main-product-img" />
             </div>
             
             <div className="gallery-grid" style={{ display: 'flex', gap: '10px', marginTop: '15px', overflowX: 'auto', paddingBottom: '10px' }}>
               <img 
-                src={product.image_url} 
-                className={`gallery-thumb ${mainImg === product.image_url ? 'active' : ''}`}
+                src={prod.image_url} 
+                className={`gallery-thumb ${mainImg === prod.image_url ? 'active' : ''}`}
                 style={{ width: '80px', height: '60px', objectFit: 'cover', cursor: 'pointer' }}
-                onClick={() => setDisplayImage(product.image_url)}
+                onClick={() => setDisplayImage(prod.image_url)}
               />
-              {(Array.isArray(product.images_extras) ? product.images_extras : product.images_extras?.split(',') || [])
+              {(Array.isArray(prod.images_extras) ? prod.images_extras : prod.images_extras?.split(',') || [])
                 .filter((url: string) => url.trim() !== "")
                 .map((url: string, idx: number) => (
                   <img key={idx} src={url.trim()} className={`gallery-thumb ${mainImg === url.trim() ? 'active' : ''}`}
@@ -70,11 +73,11 @@ export default function ProductDetailPage() {
             </div>
 
             <h1 className="glow-title" style={{ fontSize: '3rem', marginBottom: '10px', fontFamily: 'var(--font-orbitron)' }}>
-              {product.name}
+              {prod.name}
             </h1>
             
             <p style={{ color: 'var(--electric-blue)', fontFamily: 'var(--font-orbitron)', fontSize: '14px', marginBottom: '20px' }}>
-              SERIAL_NUMBER: #{product.id} // CAT: {product.cat}
+              SERIAL_NUMBER: #{prod.id} // CAT: {prod.cat}
             </p>
 
             {/* SECCIÓN DE PRECIO CON MEJOR CONTRASTE Y LECTURA */}
@@ -107,7 +110,7 @@ export default function ProductDetailPage() {
             </div>
 
             <p className="glass" style={{ padding: '25px', borderRadius: '12px', border: '1px solid var(--glass-border)', lineHeight: '1.8', color: 'var(--text-dim)', marginBottom: '30px' }}>
-              {product.description || 'Sin descripción técnica disponible para este modelo.'}
+              {prod.description || 'Sin descripción técnica disponible para este modelo.'}
             </p>
 
             <button 
