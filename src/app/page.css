@@ -1,0 +1,354 @@
+/* src/app/page.css */
+
+.page-loader {
+  background: #050110;
+  min-height: 100vh;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-scrollable {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background-color: #050110;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 100px 24px;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+  width: 100%;
+  padding: 40px 0 20px 0;
+  text-align: center;
+}
+
+.glitch {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  margin: 0;
+  color: white;
+  text-shadow: 4px 4px var(--neon-pink), -4px -4px var(--neon-blue);
+  text-transform: uppercase;
+  animation: colorCycle 4s infinite linear;
+}
+
+.hero-subtitle {
+  font-family: 'Press Start 2P', cursive;
+  color: var(--neon-green);
+  margin-top: 20px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* --- MANTENIMIENTO --- */
+.maintenance-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.maintenance-card {
+  padding: 40px 25px;
+  text-align: center;
+  border: 2px solid var(--neon-pink);
+  max-width: 600px;
+  width: 100%;
+}
+
+.maintenance-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--neon-pink);
+}
+
+.maintenance-divider {
+  margin: 20px 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+}
+
+.maintenance-text {
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.blue-highlight {
+  color: var(--neon-blue);
+}
+
+.maintenance-status {
+  margin-top: 30px;
+  font-size: 10px;
+}
+
+/* --- GRILLA DE PRODUCTOS --- */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.gamer-card {
+  background: rgba(13, 2, 33, 0.7);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 450px;
+}
+
+.gamer-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+}
+
+.image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-radius: 4px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gamer-card:hover .image-container img {
+  transform: scale(1.08);
+}
+
+.gamer-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  margin: 10px 0 5px 0;
+  color: #fff;
+  height: 2.4em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.company {
+  font-family: 'Press Start 2P';
+  font-size: 8px;
+  color: var(--neon-blue);
+  margin-bottom: 15px;
+}
+
+/* --- PRECIOS --- */
+.price-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 5;
+}
+
+.current-price {
+  font-family: 'Press Start 2P';
+  color: #fff;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 6px 10px;
+  border: 1px solid var(--neon-green);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+.sale-price {
+  border-color: var(--neon-pink) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(255, 0, 85, 0.4) !important;
+  animation: pulsePrice 2s infinite;
+}
+
+.discount-badge-home {
+  background: var(--neon-pink);
+  color: white;
+  font-family: 'Press Start 2P';
+  font-size: 8px;
+  padding: 4px 8px;
+  margin-top: 5px;
+  text-align: center;
+  box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+  margin-bottom: 4px;
+  font-family: 'Orbitron';
+}
+
+/* --- BOTONES DE FILTRO --- */
+.filter-container-home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  padding: 10px;
+  border-radius: 50px;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 10px 20px;
+  font-family: var(--font-orbitron);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 40px;
+  text-transform: uppercase;
+}
+
+.filter-btn.active {
+  background: var(--electric-blue);
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
+}
+
+.filter-btn:hover:not(.active) {
+  background: rgba(0, 85, 255, 0.1);
+  color: var(--neon-cyan);
+}
+
+.buy-button {
+  margin-top: auto;
+  background: rgba(0, 85, 255, 0.1);
+  border: 1px solid var(--electric-blue);
+  color: white;
+  padding: 12px;
+  font-family: var(--font-orbitron);
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.buy-button:hover:not(.no-stock) {
+  background: var(--electric-blue);
+  box-shadow: 0 0 20px rgba(0, 85, 255, 0.5);
+}
+
+.buy-button.no-stock {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  border-color: #555;
+}
+
+.empty-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px 0;
+}
+
+/* --- PAGINACIÓN --- */
+.pagination {
+  margin-top: 50px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-text {
+  margin: 0;
+}
+
+@keyframes colorCycle {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(30deg); }
+}
+
+@keyframes pulsePrice {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* --- MEDIA QUERIES RESPONSIVE (MÓVIL Y TABLET) --- */
+@media (max-width: 600px) {
+  .content-wrapper {
+    padding: 0 12px 60px 12px;
+  }
+
+  /* LA SOLUCIÓN AL ANCHO DE TARJETAS EN MOBILE */
+  .items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+  }
+
+  .gamer-card {
+    max-width: 280px;  /* Evita que se estire a lo ancho */
+    margin: 0 auto;    /* Centra la tarjeta */
+    min-height: auto;
+    padding: 15px;
+  }
+
+  .image-container {
+    height: 180px;     /* Mantiene la proporción perfecta */
+  }
+
+  .filter-container-home {
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 10px;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    font-size: 10px;
+  }
+}
